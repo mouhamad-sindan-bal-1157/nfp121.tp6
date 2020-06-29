@@ -6,7 +6,24 @@ import question1.*;
 public class TestsDesVisiteurs extends junit.framework.TestCase{
 
     public void testACompleter(){
-        fail(" cette mÃ©thode de tests, est Ã  complÃ©ter, appels des trois visiteurs....");
+        Contributeur c = new Contributeur("c",100);
+        GroupeDeContributeurs g = new GroupeDeContributeurs("g");
+        g.ajouter(c);
+        
+        CompositeValide visitor1= new CompositeValide();
+        SansDoublon visitor2= new SansDoublon();
+        DebitMaximal visitor3= new DebitMaximal();
+        
+        visitor1.visite(g);
+        visitor2.visite(g);
+        visitor3.visite(g);
+        
+        visitor1.visite(c);
+       visitor2.visite(c);
+        visitor3.visite(c);
+        
+        
+//        fail(" cette méthode de tests, est à compléter, appels des trois visiteurs....");
     }
 
 
@@ -35,7 +52,7 @@ public class TestsDesVisiteurs extends junit.framework.TestCase{
             g.ajouter(new Contributeur("g_b",200));
             g.ajouter(new Contributeur("g_c",300));
             assertTrue(" Ce composite est valide, revoyez CompositeValide !!!", g.accepter(new CompositeValide()));
-            assertEquals(" Revoyez DÃ©bitMaximal !!!", new Integer(100), g.accepter(new DebitMaximal()));
+            assertEquals(" Revoyez DébitMaximal !!!", new Integer(100), g.accepter(new DebitMaximal()));
             GroupeDeContributeurs g1 = new GroupeDeContributeurs("g1");
             g.ajouter(g1);
             assertFalse(" Ce composite n'est pas valide, revoyez CompositeValide !!!", g1.accepter(new CompositeValide()));
@@ -58,4 +75,3 @@ public class TestsDesVisiteurs extends junit.framework.TestCase{
         }
     }
 }
-
